@@ -1,3 +1,4 @@
-const { sum } = require("./index.js");
+const index = require("./index.js");
 
-console.log(sum(40, 2));
+const parsedValue = index.parse('{"name": "John Doe"}');
+console.log(parsedValue);

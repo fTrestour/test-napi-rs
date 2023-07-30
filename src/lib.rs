@@ -3,7 +3,16 @@
 #[macro_use]
 extern crate napi_derive;
 
+use serde::{Deserialize, Serialize};
+
+#[napi(constructor)]
+#[derive(Serialize, Deserialize)]
+pub struct Person {
+  pub name: String,
+  pub phones: Vec<String>,
+}
+
 #[napi]
-pub fn sum(a: i32, b: i32) -> i32 {
-  a + b
+pub fn parse(data: String) -> napi::Result<Person> {
+  Ok(serde_json::from_str(&data)?)
 }
